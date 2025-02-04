@@ -71,7 +71,6 @@ function fail() {
 }
 
 function fail_and_diff() {
-
     if [ -e /dev/tty ]; then
 	$difftool "$received" "$approved" </dev/tty
     else
@@ -81,12 +80,13 @@ function fail_and_diff() {
 }
 
 function pass_and_rm_received() {
-    pass $1
+    pass "$1"
     rm "$received"
 }
 
 function compare_and_approve() {
-    # NB:  I forget why branches are in subshells.  It may no longer be necessary.
+    # NB: Following are run in sub-shells to prevent their errors from
+    # terminating this shell. I'm not sure if that's still necessary.
     if diff -q "$received" "$approved" >/dev/null; then
 	(pass_and_rm_received "$1");
     else

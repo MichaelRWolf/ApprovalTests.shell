@@ -1,0 +1,5 @@
+# Logic for diff tool
+# 1. --tool argument takes top priority.
+# 2. If no --tool is specified, GIT_DIFF_TOOL is checked next.
+# 3. If GIT_DIFF_TOOL is unset, git config --get diff.tool is used.
+# 4. If neither is set, Git falls back to its internal diff.

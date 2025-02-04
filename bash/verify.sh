@@ -86,9 +86,12 @@ function pass_and_rm_received() {
 }
 
 function compare_and_approve() {
-    diff -q "$received" "$approved" >/dev/null &&
-	(pass_and_rm_received $1) ||
-	    (fail_and_diff $1)
+    # NB:  I forget why branches are in subshells.  It may no longer be necessary.
+    if diff -q "$received" "$approved" >/dev/null; then
+	(pass_and_rm_received "$1");
+    else
+	(fail_and_diff "$1")
+    fi
 }
 
 main

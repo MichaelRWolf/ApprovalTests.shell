@@ -2,12 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
-  # Allows to run this workflow manually from the Actions tab
   workflow_dispatch:
+  schedule:
+    - cron:  '0 3 * * 4'
 
 jobs:
   test:
@@ -17,4 +15,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: test bash verify.sh
         run: ./test.sh | ./verify.sh -t verify-cli-bash
+        working-directory: bash
+
+      - name: failure returns non-zero exit code
+        run: '! (./verify.sh -t failing-test -d echo <<< "input")'
         working-directory: bash

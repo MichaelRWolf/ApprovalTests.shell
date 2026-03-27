@@ -37,3 +37,19 @@ get_git_difftool() {
     echo "default-diff-tool"  # Replace this with the actual default tool if needed
 }
 ```
+
+## Emacs
+
+;; Local Variables:
+;; eval: (apheleia-mode nil)
+;; eval: (apheleia-mode nil)
+
+;; eval: (apheleia-mode +1)
+;; eval: (apheleia-mode 0)
+;; eval: (apheleia-mode -1)
+
+;; eval: (bound-and-true-p aphelia-mode)
+;; eval: (apheleia-mode)
+
+;; eval: (apheleia-mode-with-elisp-conventions nil)
+;; End:
